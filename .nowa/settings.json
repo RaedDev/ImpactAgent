@@ -1,0 +1,16 @@
+{
+    "version": "3.0.7",
+    "app": {
+        "name": "impactagent",
+        "package_name": "com.example.impactagent"
+    },
+    "main": [
+        {
+            "key": "supabase",
+            "statement": "await SupabaseService().initialize();",
+            "imports": [
+                "package:impactagent/integrations/supabase_service.dart"
+            ]
+        }
+    ]
+}
