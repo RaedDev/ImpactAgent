@@ -1,5 +1,6 @@
 import 'package:nowa_runtime/nowa_runtime.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:impactagent/models/project_model.dart';
 
 @NowaGenerated()
 class SupabaseService {
@@ -71,5 +72,15 @@ class SupabaseService {
     } catch (e) {
       throw Exception('Failed to get completion: ${e}');
     }
+  }
+
+  Future<List<ProjectModel>> getAllProjects() async {
+    final response = await Supabase.instance.client
+        .from('projects')
+        .select()
+        .withConverter(
+          (rows) => rows.map((data) => ProjectModel.fromJson(data)).toList(),
+        );
+    return response;
   }
 }

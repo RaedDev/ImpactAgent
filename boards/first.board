@@ -21,7 +21,17 @@
             ]
         },
         {
-            "x": 524.0,
+            "x": 1088.0,
+            "y": 200.0,
+            "w": 393.0,
+            "h": 808.0,
+            "widget": "const ProjectsPage()",
+            "deps": [
+                "lib/pages/projects_page.dart"
+            ]
+        },
+        {
+            "x": 559.0,
             "y": 200.0,
             "w": 393.0,
             "h": 808.0,

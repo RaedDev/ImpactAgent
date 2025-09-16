@@ -3,6 +3,7 @@ import 'package:impactagent/chat_message.dart';
 import 'package:nowa_runtime/nowa_runtime.dart';
 import 'package:impactagent/models/run_n8n_model.dart';
 import 'package:impactagent/api/api_collection.api.dart';
+import 'package:impactagent/pages/projects_page.dart';
 
 @NowaGenerated()
 class HomePage extends StatefulWidget {
@@ -26,6 +27,8 @@ class _HomePageState extends State<HomePage> {
   final String _sessionId = DateTime.now().millisecondsSinceEpoch.toString();
 
   bool _isLoading = false;
+
+  int _currentIndex = 0;
 
   @override
   void dispose() {
@@ -149,151 +152,181 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'AI Chat',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        title: Text(
+          _currentIndex == 0 ? 'AI Chat' : 'Projects',
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.blue.shade600,
         elevation: 0.0,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: _messages.isEmpty
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.chat_bubble_outline,
-                          size: 64.0,
-                          color: Colors.grey.shade400,
-                        ),
-                        const SizedBox(height: 16.0),
-                        Text(
-                          'Start a conversation!',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.grey.shade600,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          'Type a message below to begin',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.grey.shade500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : ListView.builder(
-                    controller: _scrollController,
-                    itemCount: _messages.length + (_isLoading ? 1 : 0),
-                    itemBuilder: (context, index) {
-                      if (index == _messages.length && _isLoading) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 8.0,
-                            horizontal: 16.0,
-                          ),
-                          child: Row(
+      body: _currentIndex == 0
+          ? Column(
+              children: [
+                Expanded(
+                  child: _messages.isEmpty
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CircleAvatar(
-                                radius: 16.0,
-                                backgroundColor: Colors.blue.shade100,
-                                child: Icon(
-                                  Icons.smart_toy,
-                                  size: 18.0,
-                                  color: Colors.blue.shade700,
+                              Icon(
+                                Icons.chat_bubble_outline,
+                                size: 64.0,
+                                color: Colors.grey.shade400,
+                              ),
+                              const SizedBox(height: 16.0),
+                              Text(
+                                'Start a conversation!',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.grey.shade600,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              const SizedBox(width: 8.0),
-                              Container(
-                                padding: const EdgeInsets.all(16.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade100,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: const Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: const [
-                                    SizedBox(
-                                      width: 20.0,
-                                      height: 20.0,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2.0,
-                                      ),
-                                    ),
-                                    SizedBox(width: 12.0),
-                                    Text('Thinking...'),
-                                  ],
+                              const SizedBox(height: 8.0),
+                              Text(
+                                'Type a message below to begin',
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.grey.shade500,
                                 ),
                               ),
                             ],
                           ),
-                        );
-                      }
-                      return _buildMessage(_messages[index]);
-                    },
-                  ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.1),
-                  blurRadius: 10.0,
-                  offset: const Offset(0.0, -2),
+                        )
+                      : ListView.builder(
+                          controller: _scrollController,
+                          itemCount: _messages.length + (_isLoading ? 1 : 0),
+                          itemBuilder: (context, index) {
+                            if (index == _messages.length && _isLoading) {
+                              return Container(
+                                margin: const EdgeInsets.symmetric(
+                                  vertical: 8.0,
+                                  horizontal: 16.0,
+                                ),
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 16.0,
+                                      backgroundColor: Colors.blue.shade100,
+                                      child: Icon(
+                                        Icons.smart_toy,
+                                        size: 18.0,
+                                        color: Colors.blue.shade700,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8.0),
+                                    Container(
+                                      padding: const EdgeInsets.all(16.0),
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey.shade100,
+                                        borderRadius: BorderRadius.circular(
+                                          20.0,
+                                        ),
+                                      ),
+                                      child: const Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: const [
+                                          SizedBox(
+                                            width: 20.0,
+                                            height: 20.0,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2.0,
+                                            ),
+                                          ),
+                                          SizedBox(width: 12.0),
+                                          Text('Thinking...'),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                            return _buildMessage(_messages[index]);
+                          },
+                        ),
                 ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _messageController,
-                    decoration: InputDecoration(
-                      hintText: 'Type your message...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide(color: Colors.blue.shade500),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 12.0,
-                      ),
-                    ),
-                    onSubmitted: (_) => _sendMessage(),
-                    textCapitalization: TextCapitalization.sentences,
-                  ),
-                ),
-                const SizedBox(width: 8.0),
                 Container(
+                  padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
-                    color: Colors.blue.shade500,
-                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.1),
+                        blurRadius: 10.0,
+                        offset: const Offset(0.0, -2),
+                      ),
+                    ],
                   ),
-                  child: IconButton(
-                    onPressed: _isLoading ? null : _sendMessage,
-                    icon: const Icon(Icons.send, color: Colors.white),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _messageController,
+                          decoration: InputDecoration(
+                            hintText: 'Type your message...',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide: BorderSide(
+                                color: Colors.grey.shade300,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide: BorderSide(
+                                color: Colors.grey.shade300,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide: BorderSide(
+                                color: Colors.blue.shade500,
+                              ),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 20.0,
+                              vertical: 12.0,
+                            ),
+                          ),
+                          onSubmitted: (_) => _sendMessage(),
+                          textCapitalization: TextCapitalization.sentences,
+                        ),
+                      ),
+                      const SizedBox(width: 8.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blue.shade500,
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          onPressed: _isLoading ? null : _sendMessage,
+                          icon: const Icon(Icons.send, color: Colors.white),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
-            ),
-          ),
+            )
+          : const ProjectsPage(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue.shade600,
+        unselectedItemColor: Colors.grey.shade600,
+        backgroundColor: Colors.white,
+        elevation: 8.0,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+          BottomNavigationBarItem(icon: Icon(Icons.folder), label: 'Projects'),
         ],
       ),
     );
