@@ -75,12 +75,10 @@ class SupabaseService {
   }
 
   Future<List<ProjectModel>> getAllProjects() async {
-    final response = await Supabase.instance.client
-        .from('projects')
-        .select()
-        .withConverter(
+    final response = await Supabase.instance.client.from('projects').select().withConverter(
           (rows) => rows.map((data) => ProjectModel.fromJson(data)).toList(),
         );
+
     return response;
   }
 }

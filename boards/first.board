@@ -21,7 +21,7 @@
             ]
         },
         {
-            "x": 1088.0,
+            "x": 1060.0,
             "y": 200.0,
             "w": 393.0,
             "h": 808.0,
@@ -31,13 +31,33 @@
             ]
         },
         {
-            "x": 559.0,
+            "x": 504.0,
             "y": 200.0,
             "w": 393.0,
             "h": 808.0,
             "widget": "const HomePage()",
             "deps": [
                 "lib/pages/home_page.dart"
+            ]
+        },
+        {
+            "x": 1573.0,
+            "y": 200.0,
+            "w": 393.0,
+            "h": 808.0,
+            "widget": "const ProjectDetailsPage()",
+            "deps": [
+                "lib/pages/project_details_page.dart"
+            ]
+        },
+        {
+            "x": 2134.0,
+            "y": 200.0,
+            "w": 393.0,
+            "h": 808.0,
+            "widget": "const EmptyPage()",
+            "deps": [
+                "lib/pages/empty_page.dart"
             ]
         }
     ]
