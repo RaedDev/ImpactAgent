@@ -13,7 +13,9 @@ class EmptyPage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           alignment: const Alignment(0.0, 0.0),
-          children: [],
+          children: [
+            Text('hi),
+          ],
         ),
       ),
     );
