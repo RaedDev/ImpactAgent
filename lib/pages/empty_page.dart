@@ -14,7 +14,7 @@ class EmptyPage extends StatelessWidget {
           fit: StackFit.expand,
           alignment: const Alignment(0.0, 0.0),
           children: [
-            Text('hi),
+            Text('hi'),
           ],
         ),
       ),
