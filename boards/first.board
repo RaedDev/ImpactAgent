@@ -1,64 +1,71 @@
 {
     "canvases": [
         {
-            "x": -502.0,
-            "y": 200.0,
-            "w": 405.0,
-            "h": 808.0,
+            "x": -502,
+            "y": 200,
+            "w": 405,
+            "h": 808,
             "widget": "const LoginPage()",
             "deps": [
                 "lib/pages/login_page.dart"
             ]
         },
         {
-            "x": -8.0,
-            "y": 200.0,
-            "w": 393.0,
-            "h": 808.0,
+            "x": -8,
+            "y": 200,
+            "w": 393,
+            "h": 808,
             "widget": "const SignupPage()",
             "deps": [
                 "lib/pages/signup_page.dart"
             ]
         },
         {
-            "x": 1060.0,
-            "y": 200.0,
-            "w": 393.0,
-            "h": 808.0,
+            "x": 1060,
+            "y": 200,
+            "w": 393,
+            "h": 808,
             "widget": "const ProjectsPage()",
             "deps": [
                 "lib/pages/projects_page.dart"
             ]
         },
         {
-            "x": 504.0,
-            "y": 200.0,
-            "w": 393.0,
-            "h": 808.0,
+            "x": 504,
+            "y": 200,
+            "w": 393,
+            "h": 808,
             "widget": "const HomePage()",
             "deps": [
                 "lib/pages/home_page.dart"
             ]
         },
         {
-            "x": 1573.0,
-            "y": 200.0,
-            "w": 393.0,
-            "h": 808.0,
+            "x": 1573,
+            "y": 200,
+            "w": 393,
+            "h": 808,
             "widget": "const ProjectDetailsPage()",
             "deps": [
                 "lib/pages/project_details_page.dart"
             ]
         },
         {
-            "x": 2134.0,
-            "y": 200.0,
-            "w": 393.0,
-            "h": 808.0,
+            "x": 2134,
+            "y": 200,
+            "w": 393,
+            "h": 808,
             "widget": "const EmptyPage()",
             "deps": [
                 "lib/pages/empty_page.dart"
             ]
+        },
+        {
+            "x": 2797,
+            "y": 246,
+            "w": 161,
+            "h": 174,
+            "widget": "Container(decoration:const BoxDecoration(color:Color(0xffc4c4c4)),)"
         }
     ]
 }
