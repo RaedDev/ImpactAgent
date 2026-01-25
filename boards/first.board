@@ -66,6 +66,13 @@
             "w": 161,
             "h": 174,
             "widget": "Container(decoration:const BoxDecoration(color:Color(0xffc4c4c4)),)"
+        },
+        {
+            "x": 2797,
+            "y": 619,
+            "w": 264,
+            "h": 251,
+            "widget": "Container(decoration:const BoxDecoration(color:Color(0xffc4c4c4)),)"
         }
     ]
 }
